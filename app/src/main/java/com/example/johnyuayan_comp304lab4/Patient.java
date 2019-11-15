@@ -4,6 +4,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+// POJO Entity class for the Patient Table
 @Entity(foreignKeys = @ForeignKey(entity = Nurse.class, parentColumns = "nurseId", childColumns = "nurseId"))
 public class Patient {
 

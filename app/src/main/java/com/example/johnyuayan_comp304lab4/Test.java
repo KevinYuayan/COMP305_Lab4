@@ -3,6 +3,8 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
+
+// POJO Entity class for the Test Table
 @Entity(foreignKeys = {@ForeignKey(entity = Nurse.class, parentColumns = "nurseId", childColumns = "nurseId"),
                     @ForeignKey(entity = Patient.class, parentColumns = "patientId", childColumns = "patientId")})
 public class Test {

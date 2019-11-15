@@ -3,6 +3,7 @@ package com.example.johnyuayan_comp304lab4;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
+// POJO Entity class for the Nurse Table
 @Entity
 public class Nurse {
     // Private variables
