@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">johnYuayan_COMP304Lab4</string>
+    <string-array name="MainList">
+        <item>Patients</item>
+        <item>Update Patient</item>
+        <item>New Test</item>
+        <item>Test Info</item>
+    </string-array>
 </resources>

@@ -1,4 +1,5 @@
 package com.example.johnyuayan_comp304lab4;
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
@@ -11,7 +12,9 @@ public class Test {
     // Private variables
     @PrimaryKey(autoGenerate = true)
     private int testId;
+    @NonNull
     private int patientId;
+    @NonNull
     private int nurseId;
     private String bloodType;
     private String BPL;
