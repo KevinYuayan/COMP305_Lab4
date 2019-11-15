@@ -9,12 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UpdateActivity"></activity>
-        <activity android:name=".ViewTestActivity" />
-        <activity android:name=".PatientActivity" />
-        <activity android:name=".TestActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Activities.UpdateActivity"></activity>
+        <activity android:name=".Activities.ViewTestActivity" />
+        <activity android:name=".Activities.PatientActivity" />
+        <activity android:name=".Activities.TestActivity" />
+        <activity android:name=".Activities.LoginActivity" />
+        <activity android:name=".Activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

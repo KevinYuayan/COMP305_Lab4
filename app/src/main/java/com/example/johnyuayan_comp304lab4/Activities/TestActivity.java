@@ -1,8 +1,10 @@
-package com.example.johnyuayan_comp304lab4;
+package com.example.johnyuayan_comp304lab4.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.johnyuayan_comp304lab4.R;
 
 public class TestActivity extends AppCompatActivity {
 

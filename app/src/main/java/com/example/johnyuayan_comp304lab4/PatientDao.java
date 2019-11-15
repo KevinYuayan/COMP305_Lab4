@@ -10,9 +10,9 @@ import androidx.room.Update;
 @Dao
 public interface PatientDao {
     @Insert
-    public void insertPatient(Patient patient);
+    public void insert(Patient patient);
     @Update
-    public void updatePatient(Patient patient);
+    public void update(Patient patient);
     @Delete
-    public void deletePatient(Patient patient);
+    public void delete(Patient patient);
 }

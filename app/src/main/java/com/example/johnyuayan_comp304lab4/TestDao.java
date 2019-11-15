@@ -10,9 +10,9 @@ import androidx.room.Update;
 @Dao
 public interface TestDao {
     @Insert
-    public void insertTest(Test test);
+    public void insert(Test test);
     @Update
-    public void updateTest(Test test);
+    public void update(Test test);
     @Delete
-    public void deleteTest(Test test);
+    public void delete(Test test);
 }
