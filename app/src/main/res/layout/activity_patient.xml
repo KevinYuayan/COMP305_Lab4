@@ -18,14 +18,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/fredoka_one"
-        android:text="                                          New Paitent" />
+        android:text="                                          New Patient" />
 
     <TextView
         android:id="@+id/PaitentIdlabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/fredoka_one"
-        android:text="    PaitentId" />
+        android:text="    PatientId" />
 
     <EditText
         android:id="@+id/PaitentIdText"
@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/fredoka_one"
-        android:text="    Paitent Name" />
+        android:text="    Patient Name" />
 
     <EditText
         android:id="@+id/PaitentNameText"

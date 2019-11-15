@@ -25,7 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/fredoka_one"
-        android:text="    Paitent ID" />
+        android:text="    Patient ID" />
 
     <EditText
         android:id="@+id/PaitentIDText"
