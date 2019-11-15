@@ -20,4 +20,8 @@ public class NurseViewModel extends AndroidViewModel {
     public void insert(Nurse nurse) {
         nurseRepository.insert(nurse);
     }
+
+    public Nurse Login(String user, String password) {
+        return nurseRepository.Login(user, password);
+    }
 }

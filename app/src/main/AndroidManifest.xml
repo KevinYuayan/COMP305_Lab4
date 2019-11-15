@@ -13,8 +13,8 @@
         <activity android:name=".Activities.ViewTestActivity" />
         <activity android:name=".Activities.PatientActivity" />
         <activity android:name=".Activities.TestActivity" />
-        <activity android:name=".Activities.LoginActivity" />
-        <activity android:name=".Activities.MainActivity">
+        <activity android:name=".Activities.MainActivity" />
+        <activity android:name=".Activities.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

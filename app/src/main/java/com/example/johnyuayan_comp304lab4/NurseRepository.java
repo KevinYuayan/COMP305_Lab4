@@ -22,13 +22,21 @@ public class NurseRepository {
         insertAsync(nurse);
     }
 
+    public Nurse Login(String user, String password) {
+        try {
+            return nurseDao.Login(Integer.parseInt(user), password);
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
     // Asynchronous private methods for db operations
     private void insertAsync(final Nurse nurse) {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 try {
-                    nurseDao.insert(nurse);
+                    nurseDao.Insert(nurse);
                     boolResult.postValue(true);
                 } catch (Exception e) {
                     boolResult.postValue(false);

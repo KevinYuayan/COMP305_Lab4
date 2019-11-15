@@ -1,5 +1,6 @@
 package com.example.johnyuayan_comp304lab4;
 
+import androidx.annotation.NonNull;
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
@@ -11,10 +12,15 @@ public class Patient {
     // Private variables
     @PrimaryKey(autoGenerate = true)
     private int patientId;
+    @NonNull
     private String firstName;
+    @NonNull
     private String lastName;
+    @NonNull
     private String department;
+    @NonNull
     private int nurseId;
+    @NonNull
     private int roomNumber;
 
     // Properties

@@ -9,16 +9,27 @@ import androidx.lifecycle.MutableLiveData;
 public class PatientRepository {
     private final PatientDao patientDao;
     private MutableLiveData<Boolean> boolResult = new MutableLiveData<>();
+    private LiveData<Patient> activePatient;
 
     public PatientRepository(Context context) {
         AppDatabase db = AppDatabase.getInstance(context);
         patientDao = db.patientDao();
     }
+    // Getters
     public LiveData<Boolean> getBoolResult() { return boolResult; }
+    public LiveData<Patient> getActivePatient() {
+        return activePatient;
+    }
 
     // public methods for db operations
     public void insert(Patient patient) {
         insertAsync(patient);
+    }
+    public void update(Patient patient) {
+        updateAsync(patient);
+    }
+    public void setPatient(int patientId) {
+        setPatientAsync(patientId);
     }
 
     // Asynchronous private methods for db operations
@@ -35,5 +46,35 @@ public class PatientRepository {
             }
         }).start();
     }
+    private void updateAsync(final Patient patient) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    if(patientDao.getPatient(patient.getPatientId()) == null) {
+                        throw new Exception();
+                    }
+                    patientDao.update(patient);
+                    activePatient = patientDao.getPatient(patient.getPatientId());
+                    boolResult.postValue(true);
+                } catch (Exception e) {
+                    boolResult.postValue(false);
+                }
+            }
+        }).start();
+    }
 
+    private void setPatientAsync(final int patientId) {
+        new Thread(new Runnable() {
+        @Override
+        public void run() {
+            try {
+                activePatient = patientDao.getPatient(patientId);
+                boolResult.postValue(true);
+            } catch (Exception e) {
+                boolResult.postValue(false);
+            }
+        }
+    }).start();
+    }
 }
