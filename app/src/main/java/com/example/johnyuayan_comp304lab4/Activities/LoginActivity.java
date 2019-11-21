@@ -73,6 +73,12 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Invalid UserId or Password", Toast.LENGTH_SHORT).show();
                     return;
                 }
+                else
+                {
+                    setContentView(R.layout.activity_main);
+
+                }
+
                 prefEditor.putInt("id",nurse.getNurseId());
                 startActivity(new Intent(getBaseContext(), MainActivity.class));
 

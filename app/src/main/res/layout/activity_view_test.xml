@@ -7,6 +7,29 @@
     android:orientation="vertical"
     tools:context=".Activities.ViewTestActivity">
 
+    <TextView
+        android:id="@+id/EnterPaitentIDlabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/fredoka_one"
+        android:text="    Patient ID" />
+
+    <EditText
+        android:id="@+id/searchPatientIdtext"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="@font/fredoka_one"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/searchbtn"
+        style="@style/Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/fredoka_one"
+        android:text="Search" />
+
     <ListView
         android:id="@+id/ListViewTest"
         android:layout_width="match_parent"

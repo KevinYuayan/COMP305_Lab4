@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:autoText="false"
         android:fontFamily="@font/fredoka_one"
-        android:text="                              Please the Select the option" />
+        android:text="                              Please  Select the option" />
 
     <Button
         android:id="@+id/Paitentbutton"
@@ -27,7 +27,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/fredoka_one"
-        android:text="Paitent" />
+        android:onClick="onClick"
+        android:text="Patient" />
 
     <Button
         android:id="@+id/UpdatePaitentButton"
@@ -35,7 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/fredoka_one"
-        android:text="UPDATE PAITENT" />
+        android:onClick="onClick"
+        android:text="UPDATE PATIENT" />
 
     <Button
         android:id="@+id/TestButton"
@@ -43,6 +45,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/fredoka_one"
+        android:onClick="onClick"
         android:text="ADD TEST " />
 
     <Button
@@ -51,5 +54,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/fredoka_one"
+        android:onClick="onClick"
         android:text="VIEW TEST" />
 </LinearLayout>

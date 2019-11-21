@@ -46,8 +46,8 @@ public class ViewTestActivity extends AppCompatActivity {
         testViewModel = ViewModelProviders.of(this).get(TestViewModel.class);
 
         //TODO Remove comments after ui is added in
-//        txtPatientId = findViewById(R.id.);
-//        btnTestList = findViewById(R.id.);
+        txtPatientId = findViewById(R.id.searchPatientIdtext);
+        btnTestList = findViewById(R.id.searchbtn);
 
 
         btnTestList.setOnClickListener(new View.OnClickListener() {
