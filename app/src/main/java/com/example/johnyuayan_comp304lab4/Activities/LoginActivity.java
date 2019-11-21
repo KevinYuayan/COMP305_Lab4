@@ -3,6 +3,7 @@ package com.example.johnyuayan_comp304lab4.Activities;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
@@ -30,12 +31,20 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        //TODO: uncomment when UI is added
-        //txtUser = findViewById(R.id.);
-        //txtPassword = findViewById(R.id.);
-        //btnLogin = findViewById(R.id.);
+        txtUser = findViewById(R.id.UserName);
+        txtPassword = findViewById(R.id.UserPassword);
+        btnLogin = findViewById(R.id.LoginButton);
 
         nurseViewModel = ViewModelProviders.of(this).get(NurseViewModel.class);
+
+        Nurse aNurse = new Nurse();
+        aNurse.setNurseId(100);
+        aNurse.setFirstName("Jane");
+        aNurse.setLastName("Doe");
+        aNurse.setDepartment("ICU");
+        aNurse.setPassword("123");
+
+        nurseViewModel.insert(aNurse);
 
         // Create the SharedPreference
         myPreference = getSharedPreferences("Login", 0);
@@ -47,7 +56,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String user = txtUser.getText().toString();
-                String password = txtUser.getText().toString();
+                String password = txtPassword.getText().toString();
 
                 if(user.length() == 0) {
                     txtUser.requestFocus();
@@ -64,8 +73,9 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Invalid UserId or Password", Toast.LENGTH_SHORT).show();
                     return;
                 }
-
                 prefEditor.putInt("id",nurse.getNurseId());
+                startActivity(new Intent(getBaseContext(), MainActivity.class));
+
             }
         });
     }

@@ -52,13 +52,12 @@ public class PatientActivity extends AppCompatActivity {
 
         patientViewModel = ViewModelProviders.of(this).get(PatientViewModel.class);
 
-        //TODO Remove comments after ui is added in
-//        txtPatientId = findViewById(R.id.);
-//        txtFirstName = findViewById(R.id.);
-//        txtLastName = findViewById(R.id.);
-//        txtDepartment = findViewById(R.id.);
-//        txtRoomNumber = findViewById(R.id.);
-//        btnUpdatePatient = findViewById(R.id.);
+        txtPatientId = findViewById(R.id.PatientIdText);
+        txtFirstName = findViewById(R.id.PatientFirstNameText);
+        txtLastName = findViewById(R.id.PatientLastNameText);
+        txtDepartment = findViewById(R.id.DepartmentText);
+        txtRoomNumber = findViewById(R.id.RoomText);
+        btnCreatePatient = findViewById(R.id.savebutton);
 
 
         //Checks database for patient with patient Id whenever text is changed.

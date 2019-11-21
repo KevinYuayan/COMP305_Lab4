@@ -21,14 +21,14 @@
         android:text="                                          New Paitent" />
 
     <TextView
-        android:id="@+id/PaitentIdlabel"
+        android:id="@+id/PatientIdlabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/fredoka_one"
         android:text="    PaitentId" />
 
     <EditText
-        android:id="@+id/PaitentIdText"
+        android:id="@+id/PatientIdText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -36,14 +36,28 @@
         android:inputType="textPersonName" />
 
     <TextView
-        android:id="@+id/PaitentNameLabel"
+        android:id="@+id/PatientFirstNameLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/fredoka_one"
         android:text="    Paitent Name" />
 
     <EditText
-        android:id="@+id/PaitentNameText"
+        android:id="@+id/PatientFirstNameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="@font/fredoka_one"
+        android:inputType="textPersonName" />
+    <TextView
+        android:id="@+id/PatientLastNameLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/fredoka_one"
+        android:text="    Paitent Name" />
+
+    <EditText
+        android:id="@+id/PatientLastNameText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -59,21 +73,6 @@
 
     <EditText
         android:id="@+id/DepartmentText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:fontFamily="@font/fredoka_one"
-        android:inputType="textPersonName" />
-
-    <TextView
-        android:id="@+id/DoctorLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/fredoka_one"
-        android:text="    Doctor ID" />
-
-    <EditText
-        android:id="@+id/DoctorIdText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"

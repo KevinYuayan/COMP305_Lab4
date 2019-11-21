@@ -12,7 +12,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.johnyuayan_comp304lab4.PatientViewModel;
 import com.example.johnyuayan_comp304lab4.R;
 import com.example.johnyuayan_comp304lab4.Test;
 import com.example.johnyuayan_comp304lab4.TestViewModel;
