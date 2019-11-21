@@ -31,9 +31,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //TODO: uncomment when UI is added
-        //txtUser = findViewById(R.id.);
-        //txtPassword = findViewById(R.id.);
-        //btnLogin = findViewById(R.id.);
+        txtUser = findViewById(R.id.UserName);
+        txtPassword = findViewById(R.id.UserPassword);
+        btnLogin = findViewById(R.id.LoginButton);
 
         nurseViewModel = ViewModelProviders.of(this).get(NurseViewModel.class);
 
@@ -63,6 +63,11 @@ public class LoginActivity extends AppCompatActivity {
                 if(nurse == null) {
                     Toast.makeText(LoginActivity.this, "Invalid UserId or Password", Toast.LENGTH_SHORT).show();
                     return;
+                }
+                else
+                {
+                    setContentView(R.layout.activity_main);
+
                 }
 
                 prefEditor.putInt("id",nurse.getNurseId());

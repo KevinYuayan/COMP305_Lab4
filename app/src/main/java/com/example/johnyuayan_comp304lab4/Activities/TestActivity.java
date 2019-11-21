@@ -56,13 +56,13 @@ public class TestActivity extends AppCompatActivity {
         patientViewModel = ViewModelProviders.of(this).get(PatientViewModel.class);
 
         //TODO Remove comments after ui is added in
-//        txtTestId = findViewById(R.id.);
-//        txtPatientId = findViewById(R.id.);
-//        txtBloodType = findViewById(R.id.);
-//        txtBPL = findViewById(R.id.);
-//        txtBPH = findViewById(R.id.);
-//        txtTemperature = findViewById(R.id.);
-//        btnCreateTest = findViewById(R.id.);
+       txtTestId = findViewById(R.id.TestIDtext);
+        txtPatientId = findViewById(R.id.PaitentIDText);
+        txtBloodType = findViewById(R.id.BloodTypeText);
+        txtBPL = findViewById(R.id.BPLText);
+        txtBPH = findViewById(R.id.BPHText);
+        txtTemperature = findViewById(R.id.TemperatureText);
+        btnCreateTest = findViewById(R.id.SaveTestBtn);
         btnCreateTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

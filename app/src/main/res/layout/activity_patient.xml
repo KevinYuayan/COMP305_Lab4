@@ -40,10 +40,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fontFamily="@font/fredoka_one"
-        android:text="    Patient Name" />
+        android:text="    Patient First Name" />
 
     <EditText
         android:id="@+id/PaitentNameText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:fontFamily="@font/fredoka_one"
+        android:inputType="textPersonName" />
+
+    <TextView
+        android:id="@+id/PaitentLastNamelabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/fredoka_one"
+        android:text="    Patient Last Name" />
+
+    <EditText
+        android:id="@+id/Patientlastnametext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -59,21 +74,6 @@
 
     <EditText
         android:id="@+id/DepartmentText"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:fontFamily="@font/fredoka_one"
-        android:inputType="textPersonName" />
-
-    <TextView
-        android:id="@+id/DoctorLabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/fredoka_one"
-        android:text="    Doctor ID" />
-
-    <EditText
-        android:id="@+id/DoctorIdText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
