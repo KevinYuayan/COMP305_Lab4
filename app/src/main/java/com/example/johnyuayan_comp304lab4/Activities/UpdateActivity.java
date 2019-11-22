@@ -7,6 +7,8 @@ import androidx.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -59,23 +61,23 @@ public class UpdateActivity extends AppCompatActivity {
 
 
         //Checks database for patient with patient Id whenever text is changed.
-//        txtPatientId.addTextChangedListener(new TextWatcher() {
-//            @Override
-//            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//            }
-//
-//            @Override
-//            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-//            }
-//
-//            @Override
-//            public void afterTextChanged(Editable editable) {
-//                if(editable.length() > 0) {
-//                    patientViewModel.setPatient(Integer.parseInt(editable.toString()));
-//                }
-//            }
-//        });
-        //TODO add method that displays Patient info
+        txtPatientId.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if(editable.length() > 0) {
+                    patientViewModel.setPatient(Integer.parseInt(editable.toString()));
+                }
+            }
+        });
+
 
 
         btnUpdatePatient.setOnClickListener(new View.OnClickListener() {
@@ -90,12 +92,13 @@ public class UpdateActivity extends AppCompatActivity {
                     String roomNumber = txtRoomNumber.getText().toString();
 
                     patient.setNurseId(nurseId);
-                    if(patientId.length() == 0) {
-                        txtFirstName.requestFocus();
-                        txtFirstName.setError("Required Field");
-                        return;
-                    }
-                    patient.setPatientId(Integer.parseInt(patientId));
+
+//                    if(patientId.length() == 0) {
+//                        txtFirstName.requestFocus();
+//                        txtFirstName.setError("Required Field");
+//                        return;
+//                    }
+//                    patient.setPatientId(Integer.parseInt(patientId));
 
                     if(firstName.length() == 0) {
                         txtFirstName.requestFocus();
@@ -124,6 +127,17 @@ public class UpdateActivity extends AppCompatActivity {
                         return;
                     }
                     patient.setRoomNumber(Integer.parseInt(roomNumber));
+
+
+                    // Called last so we can check db if patient exists
+                    if(patientId.length() == 0) {
+                        txtPatientId.requestFocus();
+                        txtPatientId.setError("Required Field");
+                        return;
+                    }
+                    else {
+                        patientViewModel.setPatient(Integer.parseInt(patientId));
+                    }
                     patientViewModel.update(patient);
 
                 } catch (Exception e) {

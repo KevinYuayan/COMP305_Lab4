@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.johnyuayan_comp304lab4.Patient;
 import com.example.johnyuayan_comp304lab4.PatientViewModel;
 import com.example.johnyuayan_comp304lab4.R;
 import com.example.johnyuayan_comp304lab4.Test;
@@ -31,10 +32,12 @@ public class TestActivity extends AppCompatActivity {
     private SharedPreferences myPreference;
     private SharedPreferences.Editor prefEditor;
 
+    private Test test;
+    private Patient activePatient;
+
     private TestViewModel testViewModel;
     private PatientViewModel patientViewModel;
     private int nurseId;
-    private boolean patientBool;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,19 +58,19 @@ public class TestActivity extends AppCompatActivity {
         testViewModel = ViewModelProviders.of(this).get(TestViewModel.class);
         patientViewModel = ViewModelProviders.of(this).get(PatientViewModel.class);
 
-        //TODO Remove comments after ui is added in
-        //txtTestId = findViewById(R.id.TestIDtext);
+        txtTestId = findViewById(R.id.TestIDtext);
         txtPatientId = findViewById(R.id.PaitentIDText);
-        //txtBloodType = findViewById(R.id.BloodTypeText);
+        txtBloodType = findViewById(R.id.BloodTypeText);
         txtBPL = findViewById(R.id.BPLText);
         txtBPH = findViewById(R.id.BPHText);
         txtTemperature = findViewById(R.id.TemperatureText);
         btnCreateTest = findViewById(R.id.SaveTestBtn);
+
         btnCreateTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
-                    Test test = new Test();
+                    test = new Test();
                     String testId = txtTestId.getText().toString();
                     String patientId = txtPatientId.getText().toString();
                     String bloodType = txtBloodType.getText().toString();
@@ -78,18 +81,6 @@ public class TestActivity extends AppCompatActivity {
                     test.setNurseId(TestActivity.this.nurseId);
                     if(testId.length() > 0) {
                         test.setPatientId(Integer.parseInt(testId));
-                    }
-
-                    if(patientId.length() == 0) {
-                        txtPatientId.requestFocus();
-                        txtPatientId.setError("Required Field");
-                        return;
-                    }
-                    else {
-                        patientViewModel.setPatient(Integer.parseInt(patientId));
-                        if(patientBool) {
-                            test.setPatientId(Integer.parseInt(patientId));
-                        }
                     }
 
                     if(bloodType.length() > 0) {
@@ -111,8 +102,15 @@ public class TestActivity extends AppCompatActivity {
                         }
                     }
 
-                    testViewModel.insert(test);
-
+                    // Called last so we can check db if patient exists
+                    if(patientId.length() == 0) {
+                        txtPatientId.requestFocus();
+                        txtPatientId.setError("Required Field");
+                        return;
+                    }
+                    else {
+                        patientViewModel.setPatient(Integer.parseInt(patientId));
+                    }
                 } catch (Exception e) {
                     Toast.makeText(TestActivity.this, "Invalid form values", Toast.LENGTH_SHORT).show();
                     return;
@@ -121,10 +119,18 @@ public class TestActivity extends AppCompatActivity {
         });
 
         // observers
+        patientViewModel.getActivePatient().observe(this, new Observer<Patient>() {
+            @Override
+            public void onChanged(Patient patient) {
+                activePatient = patient;
+            }
+        });
+
         patientViewModel.getBoolResult().observe(this, new Observer<Boolean>() {
             @Override
             public void onChanged(Boolean result) {
-                patientBool = result;
+                test.setPatientId(activePatient.getPatientId());
+                testViewModel.insert(test);
             }
         });
 

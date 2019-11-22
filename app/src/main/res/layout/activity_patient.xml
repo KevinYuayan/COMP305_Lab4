@@ -101,4 +101,10 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/fredoka_one"
         android:text="SAVE" />
+
+    <TextView
+        android:id="@+id/patientDisplay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView" />
 </LinearLayout>

@@ -8,19 +8,23 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.johnyuayan_comp304lab4.R;
 import com.example.johnyuayan_comp304lab4.Test;
 import com.example.johnyuayan_comp304lab4.TestViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ViewTestActivity extends AppCompatActivity {
     EditText txtPatientId;
     Button btnTestList;
+    ListView lstTestDisplay;
 
     private SharedPreferences myPreference;
     private SharedPreferences.Editor prefEditor;
@@ -45,7 +49,7 @@ public class ViewTestActivity extends AppCompatActivity {
 
         testViewModel = ViewModelProviders.of(this).get(TestViewModel.class);
 
-        //TODO Remove comments after ui is added in
+        lstTestDisplay = findViewById(R.id.lstTest);
         txtPatientId = findViewById(R.id.searchPatientIdtext);
         btnTestList = findViewById(R.id.searchbtn);
 
@@ -64,7 +68,12 @@ public class ViewTestActivity extends AppCompatActivity {
         testViewModel.getTestList().observe(this, new Observer<List<Test>>() {
             @Override
             public void onChanged(List<Test> tests) {
-                //TODO display list of test
+                List<String> testStringList = new ArrayList<>();
+                for (Test test: tests) {
+                    testStringList.add(test.toString());
+                }
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_list_item_1, testStringList);
+                lstTestDisplay.setAdapter(arrayAdapter);
             }
         });
 

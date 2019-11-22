@@ -21,6 +21,16 @@ public class Test {
     private String BPH;
     private float temperature;
 
+    public String toString() {
+        return "Test ID: " + getTestId() + "\n" +
+                "Patient ID: " + getPatientId() + "\n" +
+                "Nurse ID: " + getNurseId() + "\n" +
+                "Blood Type: " + getBloodType() + "\n" +
+                "BPL: " + getBPL() + "\n" +
+                "BPH: " + getBPH() + "\n" +
+                "Temperature: " + getTemperature();
+    }
+
     public int getTestId() {
         return testId;
     }

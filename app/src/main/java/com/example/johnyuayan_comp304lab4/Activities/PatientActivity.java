@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.johnyuayan_comp304lab4.Patient;
@@ -25,6 +26,7 @@ public class PatientActivity extends AppCompatActivity {
     EditText txtLastName;
     EditText txtDepartment;
     EditText txtRoomNumber;
+    TextView lblPatientDisplay;
     Button btnCreatePatient;
 
     private SharedPreferences myPreference;
@@ -58,6 +60,7 @@ public class PatientActivity extends AppCompatActivity {
         txtDepartment = findViewById(R.id.DepartmentText);
         txtRoomNumber = findViewById(R.id.RoomText);
         btnCreatePatient = findViewById(R.id.savebutton);
+        lblPatientDisplay = findViewById(R.id.patientDisplay);
 
 
         //Checks database for patient with patient Id whenever text is changed.
@@ -79,7 +82,6 @@ public class PatientActivity extends AppCompatActivity {
         });
 
 
-        //TODO add method that displays Patient info
         btnCreatePatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -129,6 +131,13 @@ public class PatientActivity extends AppCompatActivity {
                     Toast.makeText(PatientActivity.this, "Invalid form values", Toast.LENGTH_SHORT).show();
                     return;
                 }
+            }
+        });
+
+        patientViewModel.getActivePatient().observe(this, new Observer<Patient>() {
+            @Override
+            public void onChanged(Patient patient) {
+                lblPatientDisplay.setText(patient.toString());
             }
         });
 

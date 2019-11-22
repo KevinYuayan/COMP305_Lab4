@@ -23,7 +23,19 @@ public class Patient {
     @NonNull
     private int roomNumber;
 
+    @NonNull
+    @Override
+    public String toString() {
+        return "Patient Id: " + getPatientId() + "\n" +
+                "First Name: " + getFirstName() + "\n" +
+                "Last Name: " + getLastName() + "\n" +
+                "Department: " + getDepartment() + "\n" +
+                "Nurse Id: " + getNurseId() + "\n" +
+                "Room #: " + getRoomNumber();
+    }
+
     // Properties
+
 
     public int getPatientId() {
         return patientId;
@@ -72,4 +84,6 @@ public class Patient {
     public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
     }
+
+
 }
