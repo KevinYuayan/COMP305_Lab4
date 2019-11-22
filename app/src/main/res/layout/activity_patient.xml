@@ -50,7 +50,6 @@
         android:fontFamily="@font/fredoka_one"
         android:inputType="textPersonName" />
     <TextView
-<<<<<<< HEAD
         android:id="@+id/PatientLastNameLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,16 +58,6 @@
 
     <EditText
         android:id="@+id/PatientLastNameText"
-=======
-        android:id="@+id/PaitentLastNamelabel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/fredoka_one"
-        android:text="    Patient Last Name" />
-
-    <EditText
-        android:id="@+id/Patientlastnametext"
->>>>>>> ee64bcef192e75779370c9e62c9a8ca53f4be17a
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"

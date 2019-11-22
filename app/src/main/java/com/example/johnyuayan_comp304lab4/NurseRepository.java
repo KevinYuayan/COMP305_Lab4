@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData;
 public class NurseRepository {
     private final NurseDao nurseDao;
     private MutableLiveData<Boolean> boolResult = new MutableLiveData<>();
+    private Nurse loginNurse;
 
     public NurseRepository(Context context) {
         AppDatabase db = AppDatabase.getInstance(context);
@@ -22,13 +23,14 @@ public class NurseRepository {
         insertAsync(nurse);
     }
 
-    public Nurse Login(String user, String password) {
-        try {
-            return nurseDao.Login(Integer.parseInt(user), password);
-        } catch (Exception e) {
-            return null;
-        }
+    public void Login(String user, String password) {
+        LoginAsync(Integer.parseInt(user), password);
     }
+
+    public Nurse getLoginNurse() {
+        return loginNurse;
+    }
+
 
     // Asynchronous private methods for db operations
     private void insertAsync(final Nurse nurse) {
@@ -37,6 +39,17 @@ public class NurseRepository {
             public void run() {
                 try {
                     nurseDao.Insert(nurse);
+                } catch (Exception e) {
+                }
+            }
+        }).start();
+    }
+    private void LoginAsync(final int user, final String password) {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    loginNurse = nurseDao.Login(user, password);
                     boolResult.postValue(true);
                 } catch (Exception e) {
                     boolResult.postValue(false);

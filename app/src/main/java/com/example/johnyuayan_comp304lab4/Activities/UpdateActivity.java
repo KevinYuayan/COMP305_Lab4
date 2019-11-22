@@ -50,9 +50,8 @@ public class UpdateActivity extends AppCompatActivity {
 
         patientViewModel = ViewModelProviders.of(this).get(PatientViewModel.class);
 
-        //TODO Remove comments after ui is added in
-       txtPatientId = findViewById(R.id.PaitentIDText);
-        txtFirstName = findViewById(R.id.PaitentNameText);
+        txtPatientId = findViewById(R.id.PaitentIDText);
+        txtFirstName = findViewById(R.id.FirstNameUpdateText);
         txtLastName = findViewById(R.id.LastNameEditText);
         txtDepartment = findViewById(R.id.DepartmentText);
         txtRoomNumber = findViewById(R.id.RoomText);

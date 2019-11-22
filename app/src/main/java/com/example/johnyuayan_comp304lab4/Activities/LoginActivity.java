@@ -1,6 +1,7 @@
 package com.example.johnyuayan_comp304lab4.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.content.Intent;
@@ -68,20 +69,19 @@ public class LoginActivity extends AppCompatActivity {
                     txtPassword.setError("Required Field");
                     return;
                 }
-                Nurse nurse = nurseViewModel.Login(user, password);
-                if(nurse == null) {
+                nurseViewModel.Login(user, password);
+            }
+        });
+
+        nurseViewModel.getBoolResult().observe(this, new Observer<Boolean>() {
+            @Override
+            public void onChanged(Boolean result) {
+                if (result) {
+                    prefEditor.putInt("id", nurseViewModel.getLoginNurse().getNurseId());
+                    startActivity(new Intent(getBaseContext(), MainActivity.class));
+                } else {
                     Toast.makeText(LoginActivity.this, "Invalid UserId or Password", Toast.LENGTH_SHORT).show();
-                    return;
                 }
-                else
-                {
-                    setContentView(R.layout.activity_main);
-
-                }
-
-                prefEditor.putInt("id",nurse.getNurseId());
-                startActivity(new Intent(getBaseContext(), MainActivity.class));
-
             }
         });
     }

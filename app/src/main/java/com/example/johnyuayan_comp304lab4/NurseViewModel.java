@@ -17,11 +17,19 @@ public class NurseViewModel extends AndroidViewModel {
         boolResult = nurseRepository.getBoolResult();
     }
 
+    public LiveData<Boolean> getBoolResult() {
+        return boolResult;
+    }
+
+    public Nurse getLoginNurse() {
+        return nurseRepository.getLoginNurse();
+    }
+
     public void insert(Nurse nurse) {
         nurseRepository.insert(nurse);
     }
 
-    public Nurse Login(String user, String password) {
-        return nurseRepository.Login(user, password);
+    public void Login(String user, String password) {
+        nurseRepository.Login(user, password);
     }
 }
