@@ -19,6 +19,8 @@ import com.example.johnyuayan_comp304lab4.Patient;
 import com.example.johnyuayan_comp304lab4.PatientViewModel;
 import com.example.johnyuayan_comp304lab4.R;
 
+import java.util.List;
+
 public class PatientActivity extends AppCompatActivity {
 
     EditText txtPatientId;
@@ -28,6 +30,7 @@ public class PatientActivity extends AppCompatActivity {
     EditText txtRoomNumber;
     TextView lblPatientDisplay;
     Button btnCreatePatient;
+    private boolean isObserved;
 
     private SharedPreferences myPreference;
     private SharedPreferences.Editor prefEditor;
@@ -82,6 +85,12 @@ public class PatientActivity extends AppCompatActivity {
         });
 
 
+        // Used for debugging
+//        List<Patient>patients = patientViewModel.getPatients().getValue();
+//        for (Patient patient:patients) {
+//            System.out.println(patient);
+//        }
+
         btnCreatePatient.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -134,22 +143,40 @@ public class PatientActivity extends AppCompatActivity {
             }
         });
 
-        patientViewModel.getActivePatient().observe(this, new Observer<Patient>() {
-            @Override
-            public void onChanged(Patient patient) {
-                lblPatientDisplay.setText(patient.toString());
-            }
-        });
 
-        patientViewModel.getBoolResult().observe(this, new Observer<Boolean>() {
+
+        patientViewModel.getIntResult().observe(this, new Observer<Integer>() {
             @Override
-            public void onChanged(Boolean result) {
-                if (result) {
-                    Toast.makeText(PatientActivity.this, "Patient successfully saved", Toast.LENGTH_SHORT).show();
-                } else {
-                    Toast.makeText(PatientActivity.this, "Error saving patient", Toast.LENGTH_SHORT).show();
+            public void onChanged(Integer result) {
+                switch(result) {
+                    case 1:
+                        observePatient();
+                        Toast.makeText(PatientActivity.this, "Patient successfully saved", Toast.LENGTH_SHORT).show();
+                        break;
+                    case 3:
+                        observePatient();
+                        break;
+                    case -1:
+                        Toast.makeText(PatientActivity.this, "Error saving patient", Toast.LENGTH_SHORT).show();
+                        break;
+                    case -2:
+                        Toast.makeText(PatientActivity.this, "Error finding patient", Toast.LENGTH_SHORT).show();
+                        break;
                 }
             }
         });
+    }
+
+    private void observePatient() {
+        // Checks if there is a patient in getActivePatient and if it's already being observed
+        if(patientViewModel.getActivePatient().getValue() != null && isObserved != true) {
+            isObserved = true;
+            patientViewModel.getActivePatient().observe(this, new Observer<Patient>() {
+                @Override
+                public void onChanged(Patient patient) {
+                    lblPatientDisplay.setText(patient.toString());
+                }
+            });
+        }
     }
 }

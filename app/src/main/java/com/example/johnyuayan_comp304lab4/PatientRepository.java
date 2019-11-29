@@ -5,18 +5,31 @@ import android.content.Context;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
+import java.util.List;
+
 // Manages data sources. Interacts with the Database for the Test Entity/table
 public class PatientRepository {
     private final PatientDao patientDao;
-    private MutableLiveData<Boolean> boolResult = new MutableLiveData<>();
+    // -1 = error
+    // 1 = insert success
+    // 2 = update success
+    // 3 = getPatient success
+    private MutableLiveData<Integer> intResult = new MutableLiveData<>();
     private LiveData<Patient> activePatient;
+
+
+    private LiveData<List<Patient>> patients;
 
     public PatientRepository(Context context) {
         AppDatabase db = AppDatabase.getInstance(context);
         patientDao = db.patientDao();
+        patients = patientDao.getPatientList();
     }
     // Getters
-    public LiveData<Boolean> getBoolResult() { return boolResult; }
+    public LiveData<List<Patient>> getPatients() {
+        return patients;
+    }
+    public LiveData<Integer> getIntResult() { return intResult; }
     public LiveData<Patient> getActivePatient() {
         return activePatient;
     }
@@ -39,9 +52,10 @@ public class PatientRepository {
             public void run() {
                 try {
                     patientDao.insert(patient);
-                    boolResult.postValue(true);
+                    activePatient = patientDao.getPatient(patient.getPatientId());
+                    intResult.postValue(1);
                 } catch (Exception e) {
-                    boolResult.postValue(false);
+                    intResult.postValue(-1);
                 }
             }
         }).start();
@@ -56,9 +70,9 @@ public class PatientRepository {
                     }
                     patientDao.update(patient);
                     activePatient = patientDao.getPatient(patient.getPatientId());
-                    boolResult.postValue(true);
+                    intResult.postValue(2);
                 } catch (Exception e) {
-                    boolResult.postValue(false);
+                    intResult.postValue(-1);
                 }
             }
         }).start();
@@ -70,9 +84,12 @@ public class PatientRepository {
         public void run() {
             try {
                 activePatient = patientDao.getPatient(patientId);
-                boolResult.postValue(true);
+                if(activePatient == null) {
+                    throw new Exception();
+                }
+                intResult.postValue(3);
             } catch (Exception e) {
-                boolResult.postValue(false);
+                intResult.postValue(-2);
             }
         }
     }).start();

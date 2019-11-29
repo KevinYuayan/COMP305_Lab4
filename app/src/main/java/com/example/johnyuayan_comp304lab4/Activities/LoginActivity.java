@@ -38,14 +38,14 @@ public class LoginActivity extends AppCompatActivity {
 
         nurseViewModel = ViewModelProviders.of(this).get(NurseViewModel.class);
 
-        Nurse aNurse = new Nurse();
-        aNurse.setNurseId(100);
-        aNurse.setFirstName("Jane");
-        aNurse.setLastName("Doe");
-        aNurse.setDepartment("ICU");
-        aNurse.setPassword("123");
+//        Nurse aNurse = new Nurse();
+//        aNurse.setNurseId(100);
+//        aNurse.setFirstName("Jane");
+//        aNurse.setLastName("Doe");
+//        aNurse.setDepartment("ICU");
+//        aNurse.setPassword("123");
 
-        nurseViewModel.insert(aNurse);
+//        nurseViewModel.insert(aNurse);
 
         // Create the SharedPreference
         myPreference = getSharedPreferences("Login", 0);
@@ -78,6 +78,9 @@ public class LoginActivity extends AppCompatActivity {
             public void onChanged(Boolean result) {
                 if (result) {
                     prefEditor.putInt("id", nurseViewModel.getLoginNurse().getNurseId());
+                    prefEditor.commit();
+                    System.out.println(nurseViewModel.getLoginNurse().getNurseId());
+                    System.out.println(myPreference.getInt("id", 0));
                     startActivity(new Intent(getBaseContext(), MainActivity.class));
                 } else {
                     Toast.makeText(LoginActivity.this, "Invalid UserId or Password", Toast.LENGTH_SHORT).show();

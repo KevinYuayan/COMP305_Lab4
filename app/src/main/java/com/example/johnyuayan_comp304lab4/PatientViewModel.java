@@ -6,17 +6,22 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import java.util.List;
+
 public class PatientViewModel extends AndroidViewModel {
     private PatientRepository patientRepository;
-    private LiveData<Boolean> boolResult;
+    private LiveData<Integer> intResult;
     private LiveData<Patient> activePatient;
+
+    private LiveData<List<Patient>> patients;
 
 
     public PatientViewModel(@NonNull Application application) {
         super(application);
         patientRepository = new PatientRepository(application);
-        boolResult = patientRepository.getBoolResult();
+        intResult = patientRepository.getIntResult();
         activePatient = patientRepository.getActivePatient();
+        patients = patientRepository.getPatients();
     }
     public void insert(Patient patient) {
         patientRepository.insert(patient);
@@ -28,10 +33,13 @@ public class PatientViewModel extends AndroidViewModel {
         patientRepository.setPatient(patientId);
     }
 
+    public LiveData<List<Patient>> getPatients() {
+        return patients;
+    }
     public LiveData<Patient> getActivePatient() {
         return activePatient;
     }
-    public LiveData<Boolean> getBoolResult() {
-        return boolResult;
+    public LiveData<Integer> getIntResult() {
+        return intResult;
     }
 }

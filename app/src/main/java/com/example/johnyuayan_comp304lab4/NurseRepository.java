@@ -50,6 +50,9 @@ public class NurseRepository {
             public void run() {
                 try {
                     loginNurse = nurseDao.Login(user, password);
+                    if(loginNurse == null) {
+                        throw new Exception();
+                    }
                     boolResult.postValue(true);
                 } catch (Exception e) {
                     boolResult.postValue(false);

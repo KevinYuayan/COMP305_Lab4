@@ -27,6 +27,7 @@ public class UpdateActivity extends AppCompatActivity {
     EditText txtRoomNumber;
     Button btnUpdatePatient;
 
+    private Patient activePatient;
     private SharedPreferences myPreference;
     private SharedPreferences.Editor prefEditor;
 
@@ -60,7 +61,7 @@ public class UpdateActivity extends AppCompatActivity {
         btnUpdatePatient = findViewById(R.id.updateButton);
 
 
-        //Checks database for patient with patient Id whenever text is changed.
+        //Checks database for activePatient with activePatient Id whenever text is changed.
         txtPatientId.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -84,52 +85,45 @@ public class UpdateActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 try {
-                    Patient patient = new Patient ();
+                    activePatient = new Patient ();
                     String patientId = txtPatientId.getText().toString();
                     String firstName = txtFirstName.getText().toString();
                     String lastName = txtLastName.getText().toString();
                     String department = txtDepartment.getText().toString();
                     String roomNumber = txtRoomNumber.getText().toString();
 
-                    patient.setNurseId(nurseId);
-
-//                    if(patientId.length() == 0) {
-//                        txtFirstName.requestFocus();
-//                        txtFirstName.setError("Required Field");
-//                        return;
-//                    }
-//                    patient.setPatientId(Integer.parseInt(patientId));
+                    activePatient.setNurseId(nurseId);
 
                     if(firstName.length() == 0) {
                         txtFirstName.requestFocus();
                         txtFirstName.setError("Required Field");
                         return;
                     }
-                    patient.setFirstName(firstName);
+                    activePatient.setFirstName(firstName);
 
                     if(lastName.length() == 0) {
                         txtLastName.requestFocus();
                         txtLastName.setError("Required Field");
                         return;
                     }
-                    patient.setLastName(lastName);
+                    activePatient.setLastName(lastName);
 
                     if(department.length() == 0) {
                         txtDepartment.requestFocus();
                         txtDepartment.setError("Required Field");
                         return;
                     }
-                    patient.setDepartment(department);
+                    activePatient.setDepartment(department);
 
                     if(roomNumber.length() == 0) {
                         txtRoomNumber.requestFocus();
                         txtRoomNumber.setError("Required Field");
                         return;
                     }
-                    patient.setRoomNumber(Integer.parseInt(roomNumber));
+                    activePatient.setRoomNumber(Integer.parseInt(roomNumber));
 
 
-                    // Called last so we can check db if patient exists
+                    // Called last so we can check db if activePatient exists
                     if(patientId.length() == 0) {
                         txtPatientId.requestFocus();
                         txtPatientId.setError("Required Field");
@@ -138,7 +132,6 @@ public class UpdateActivity extends AppCompatActivity {
                     else {
                         patientViewModel.setPatient(Integer.parseInt(patientId));
                     }
-                    patientViewModel.update(patient);
 
                 } catch (Exception e) {
                     Toast.makeText(UpdateActivity.this, "Invalid form values", Toast.LENGTH_SHORT).show();
@@ -147,13 +140,22 @@ public class UpdateActivity extends AppCompatActivity {
             }
         });
 
-        patientViewModel.getBoolResult().observe(this, new Observer<Boolean>() {
+        //observers
+        patientViewModel.getActivePatient().observe(this, new Observer<Patient>() {
             @Override
-            public void onChanged(Boolean result) {
-                if (result) {
+            public void onChanged(Patient patient) {
+                activePatient.setPatientId(patient.getPatientId());
+                patientViewModel.update(patient);
+            }
+        });
+
+        patientViewModel.getIntResult().observe(this, new Observer<Integer>() {
+            @Override
+            public void onChanged(Integer result) {
+                if (result == 2) {
                     Toast.makeText(UpdateActivity.this, "Patient successfully updated", Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(UpdateActivity.this, "Error updating patient", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UpdateActivity.this, "Error updating activePatient", Toast.LENGTH_SHORT).show();
                 }
             }
         });

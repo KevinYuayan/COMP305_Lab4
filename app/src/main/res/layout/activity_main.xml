@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/fredoka_one"
         android:layout_gravity="center_horizontal"
-        android:text="Please  Select the option" />
+        android:text="Please Select the option" />
 
     <Button
         android:id="@+id/Paitentbutton"

@@ -126,9 +126,9 @@ public class TestActivity extends AppCompatActivity {
             }
         });
 
-        patientViewModel.getBoolResult().observe(this, new Observer<Boolean>() {
+        patientViewModel.getIntResult().observe(this, new Observer<Integer>() {
             @Override
-            public void onChanged(Boolean result) {
+            public void onChanged(Integer result) {
                 test.setPatientId(activePatient.getPatientId());
                 testViewModel.insert(test);
             }
